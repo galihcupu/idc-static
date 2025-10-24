@@ -105,8 +105,8 @@
       font-size: clamp(1.2rem, 5.5vw, 2.6rem);
       letter-spacing: 0.4px;
       text-align:center;
-      backdrop-filter: blur(6px) saturate(120%);
-      -webkit-backdrop-filter: blur(6px) saturate(120%);
+      backdrop-filter: blur(3px) saturate(120%);
+      -webkit-backdrop-filter: blur(3px) saturate(120%);
       transition: background .2s ease, transform .15s ease;
       user-select: none;
       max-width: 92vw;
@@ -115,7 +115,7 @@
       width: clamp(44px, 9vw, 84px);
       height: clamp(44px, 9vw, 84px);
       border-radius: 12px;
-      object-fit: cover;
+      object-fit: contain;
       flex-shrink: 0;
       box-shadow: 0 6px 18px rgba(0,0,0,0.35);
       border: 1px solid rgba(255,255,255,0.08);
@@ -168,7 +168,7 @@
 <body>
   <header role="banner">
     <div class="brand" aria-hidden="false">
-      <img class="card-img" src="idclear-transparent.png" alt="Decorative thumbnail">
+      <img class="card-img" src="idclear-transparent.png" alt="IDClear">
 <!--
       <span class="logo" aria-hidden="true">H</span>
 -->
