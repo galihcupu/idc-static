@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>You Are Blocked!!</title>
-
   <style>
     :root{
       --bg-image: url("bg.png");
@@ -17,11 +16,9 @@
       --shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
-    /* Basic reset */
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
 
-    /* Fullscreen hero with background image */
     .hero{
       min-height:100vh;
       display:flex;
@@ -37,7 +34,6 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* soft overlay to ensure legible content */
     .hero::before{
       content:"";
       position:absolute;
@@ -48,37 +44,55 @@
       backdrop-filter: blur(0.5px);
     }
 
-    /* Centered card */
+    /* Card now supports an inline image + text */
     .card{
       position:relative;
       z-index:2;
-      padding: clamp(0.8rem, 4vw, 2rem) clamp(1.2rem, 6vw, 3rem);
+      padding: clamp(0.6rem, 3.5vw, 1.6rem) clamp(1rem, 5vw, 2rem);
       background: var(--card-red-light);
       color: var(--text-color);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       display:inline-flex;
+      gap: clamp(0.6rem, 3vw, 1.2rem);
       align-items:center;
       justify-content:center;
       font-weight:700;
-      font-size: clamp(1.4rem, 6vw, 3rem); /* responsive text */
-      letter-spacing: 0.6px;
+      font-size: clamp(1.2rem, 5.5vw, 2.6rem);
+      letter-spacing: 0.4px;
       text-align:center;
       backdrop-filter: blur(6px) saturate(120%);
       -webkit-backdrop-filter: blur(6px) saturate(120%);
       transition: background .2s ease, transform .15s ease;
       user-select: none;
+      max-width: 92vw;
+    }
+
+    /* Small image inside the card */
+    .card-img{
+      width: clamp(44px, 9vw, 84px);
+      height: clamp(44px, 9vw, 84px);
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .card-text{
+      display:inline-block;
+      line-height:1;
+      white-space:nowrap;
     }
 
     .card:active{ transform: translateY(1px) }
 
-    /* Accessibility: focus outline */
     .card:focus{
       outline: 3px solid rgba(255,255,255,0.12);
       outline-offset: 4px;
     }
 
-    /* small theme toggle in the corner (mobile friendly) */
     .theme-toggle{
       position: absolute;
       top: 12px;
@@ -94,7 +108,6 @@
       backdrop-filter: blur(6px);
     }
 
-    /* Dark mode adjustments via system preference */
     @media (prefers-color-scheme: dark){
       :root{
         --overlay-light: var(--overlay-dark);
@@ -106,41 +119,37 @@
       }
     }
 
-    /* User-chosen theme via data-theme attribute (overrides system) */
     :root[data-theme="dark"] .hero::before{ background: var(--overlay-dark) }
     :root[data-theme="dark"] .card{ background: var(--card-red-dark) }
     :root[data-theme="light"] .hero::before{ background: var(--overlay-light) }
     :root[data-theme="light"] .card{ background: var(--card-red-light) }
 
-    /* Responsive tweaks */
+    /* On small screens stack image above text */
+    @media (max-width:540px){
+      .card{ flex-direction: column; gap: 0.5rem; padding: clamp(0.6rem, 4vw, 1.2rem); }
+      .card-text{ font-size: clamp(1rem, 6.5vw, 1.6rem); white-space:normal; }
+    }
+
     @media (max-width:420px){
       .theme-toggle{ top:10px; right:8px; padding:7px 9px; font-size:.85rem; }
-      .card{ padding: clamp(.7rem,5vw,1.3rem) clamp(.9rem,6vw,1.6rem); }
     }
   </style>
 </head>
 <body>
   <div class="hero" role="img" aria-label="Decorative background image">
-
-<!--
     <button class="theme-toggle" id="toggle" aria-pressed="false" title="Toggle theme">Toggle theme</button>
--->
-    
+
+    <!-- Card contains an image and the text "Hehehe" -->
     <div class="card" tabindex="0" aria-live="polite">
-      <h1>You are not allowed to access this site!</h1>
-      <p>Your IP: ::CLIENT_IP::</p>
-      <p>Your Location: ::GEO::</p>
-      <p>Ray ID::RAY_ID::</p>
+      <img class="card-img" src="idclear-transparent.png" alt="IDClear">
+      <span class="card-text">You Are Not Allowed To Access This Site!!</span>
     </div>
-  
-<!--
+  </div>
+
   <script>
-    // Small optional theme toggle: honors system preference initially.
     (function(){
       const root = document.documentElement;
       const btn = document.getElementById('toggle');
-
-      // Initialize from localStorage or leave to system preference
       const stored = localStorage.getItem('theme-preference');
       if(stored) root.setAttribute('data-theme', stored);
 
@@ -149,7 +158,6 @@
         btn.textContent = state === 'dark' ? 'Dark' : 'Light';
       }
 
-      // set initial label
       const current = root.getAttribute('data-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       reflect(current);
 
@@ -161,12 +169,5 @@
       });
     })();
   </script>
--->
-  
 </body>
 </html>
-<!--
-Notes (brief):
-    - Uses CSS clamp() for responsive sizing, backdrop-filter for a frosted effect, and prefers-color-scheme for dark mode.
-    - The theme toggle is optional; remove the button and script if you only want system-based dark mode.
--->
