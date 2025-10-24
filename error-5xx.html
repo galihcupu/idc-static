@@ -169,23 +169,34 @@
 /* Container aligns words side-by-side and centers them */
     .word-row {
       display: flex;
-      gap: 12px;               /* space between words */
+      gap: 20px;               /* space between words */
       justify-content: center; /* horizontal centering */
       align-items: center;     /* vertical alignment */
       padding: 24px;
-      background: #f7f7f8;
-      min-height: 100vh;       /* demo: center vertically in viewport */
+      min-height: 10vh;       /* demo: center vertically in viewport */
       box-sizing: border-box;
       margin: 0;
     }
 
     /* Each word gets a snug border */
-    .word {
+    .word-ok {
       display: inline-block;     /* lets width hug content */
-      border: 2px solid #333;    /* border color & thickness */
+      border: 0px solid #333;    /* border color & thickness */
       padding: 6px 12px;         /* space inside border */
       border-radius: 6px;        /* rounded corners (optional) */
-      background: #fff;          /* separate background */
+      background: #284;          /* separate background */
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-size: 18px;
+      line-height: 1;
+      white-space: nowrap;       /* prevent wrap inside the word */
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .word-nok {
+      display: inline-block;     /* lets width hug content */
+      border: 0px solid #333;    /* border color & thickness */
+      padding: 6px 12px;         /* space inside border */
+      border-radius: 6px;        /* rounded corners (optional) */
+      background: #824;          /* separate background */
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       font-size: 18px;
       line-height: 1;
@@ -247,21 +258,21 @@
           We are sorry for the inconvenience<br />
           Please try again later<br />
           <div class="word-row" role="list">
-            <span class="word" role="listitem" tabindex="0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-green-500 dark:text-green-400">
+            <span class="word-ok" role="listitem" tabindex="0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-green-500 dark:text-green-400">
                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path>
               </svg>
               <span class="truncate">You</span>
             </span>
-            <span class="word" role="listitem" tabindex="0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-green-500 dark:text-green-400">
+            <span class="word-ok" role="listitem" tabindex="0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-green-500 dark:text-green-400">
                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                 <path d="m9 11 3 3L22 4"></path>
               </svg>
               <span class="truncate">CDN</span>
             </span>
-            <span class="word" role="listitem" tabindex="0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-red-500 dark:text-red-400">
+            <span class="word-nok" role="listitem" tabindex="0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-red-500 dark:text-red-400">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="m15 9-6 6"></path>
                 <path d="m9 9 6 6"></path>
