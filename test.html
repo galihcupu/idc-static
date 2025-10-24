@@ -6,8 +6,7 @@
   <title>You Have Been Blocked!!</title>
   <style>
     :root{
-    :root{
-      --bg-image: url("bg1-transparent.png");
+      --bg-image: url("bg.png");
       --overlay-light: rgba(0,0,0,0.18);
       --overlay-dark: rgba(0,0,0,0.5);
       --card-red-light: rgba(220,40,40,0.25);
@@ -106,8 +105,8 @@
       font-size: clamp(1.2rem, 5.5vw, 2.6rem);
       letter-spacing: 0.4px;
       text-align:center;
-      backdrop-filter: blur(3px) saturate(120%);
-      -webkit-backdrop-filter: blur(3px) saturate(120%);
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
       transition: background .2s ease, transform .15s ease;
       user-select: none;
       max-width: 92vw;
@@ -116,13 +115,11 @@
       width: clamp(44px, 9vw, 84px);
       height: clamp(44px, 9vw, 84px);
       border-radius: 12px;
-      object-fit: contain;
+      object-fit: cover;
       flex-shrink: 0;
-/*
       box-shadow: 0 6px 18px rgba(0,0,0,0.35);
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
-*/
     }
     .card-text{display:inline-block;line-height:1;white-space:nowrap}
 
@@ -175,7 +172,7 @@
 <!--
       <span class="logo" aria-hidden="true">H</span>
 -->
-      <span class="site-name">PT Kliring Penjaminan Efek Indonesia</span>
+      <span class="site-name">Hehehe</span>
     </div>
 
 <!--
@@ -195,15 +192,17 @@
   <main role="main">
     <section class="hero" role="img" aria-label="Decorative background image">
       <div class="card" tabindex="0" aria-live="polite">
+
 <!--
         <img class="card-img" src="https://images.unsplash.com/photo-1545996124-6b0b3e4b3e9f?auto=format&fit=crop&w=200&q=80" alt="Decorative thumbnail">
 -->
+
         <span class="card-text">Sorry, you have been blocked</span>
       </div>
     </section>
   </main>
 
-  <footer role="contentinfo">
+<footer role="contentinfo">
     Cloudflare Ray ID: ::RAY_ID:: • Your IP: ::CLIENT_IP::
   </footer>
 
@@ -237,6 +236,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 -->
-  
+
 </body>
 </html>
