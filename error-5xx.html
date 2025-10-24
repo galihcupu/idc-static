@@ -165,6 +165,10 @@
       .card-img{width:56px;height:56px}
       :root{--header-height:56px}
     }
+
+    .cf-error-details{
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -202,6 +206,37 @@
         <span class="card-text">
           We are sorry for the inconvenience<br />
           Please try again later<br />
+          <div class="flex items-center justify-center gap-1 sm:gap-2">
+            <div class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-medium text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 transition-all duration-300 ease-out hover:scale-[1.02] active:scale-100 bg-green-50/80 text-green-600 ring-1 ring-green-100/80 dark:bg-green-900/20 dark:text-green-300 dark:ring-green-900/30 w-[100px] sm:w-[120px]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-green-500 dark:text-green-400">
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path>
+              </svg>
+              <span class="truncate">You</span>
+            </div>
+            <div class="flex-1 flex items-center px-3">
+              <div class="h-0.5 w-full relative transition-all duration-500 overflow-hidden bg-green-100/50 dark:bg-green-900/30">
+                <div class="absolute inset-0 w-full h-full animate-flow bg-gradient-to-r from-transparent via-green-500/60 to-transparent dark:via-green-400/80"></div>
+              </div>
+            </div>
+            <div class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-medium text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 transition-all duration-300 ease-out hover:scale-[1.02] active:scale-100 bg-green-50/80 text-green-600 ring-1 ring-green-100/80 dark:bg-green-900/20 dark:text-green-300 dark:ring-green-900/30 w-[100px] sm:w-[120px]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-green-500 dark:text-green-400">
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                <path d="m9 11 3 3L22 4"></path>
+              </svg>
+              <span class="truncate">CDN</span>
+            </div>
+            <div class="flex-1 flex items-center px-3">
+              <div class="h-0.5 w-full relative transition-all duration-500 overflow-hidden bg-green-100/50 dark:bg-green-900/30">
+                <div class="absolute inset-0 w-full h-full animate-flow bg-gradient-to-r from-transparent via-green-500/60 to-transparent dark:via-green-400/80"></div>
+              </div>
+            </div>
+            <div class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-medium text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 transition-all duration-300 ease-out hover:scale-[1.02] active:scale-100 bg-red-50/80 text-red-600 ring-1 ring-red-100/80 dark:bg-red-900/20 dark:text-red-300 dark:ring-red-900/30 w-[100px] sm:w-[120px]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x h-4 w-4 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform flex-shrink-0 text-red-500 dark:text-red-400">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m15 9-6 6"></path>
+                <path d="m9 9 6 6"></path>
+              </svg>
+              <span class="truncate">Origin</span></div></div>
           ::CLOUDFLARE_ERROR_500S_BOX::<br/>
         </span>
       </div>
