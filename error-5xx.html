@@ -124,6 +124,7 @@
 */
     }
     .card-text{display:inline-block;line-height:1;white-space:nowrap}
+    .message{position:absolute}
 
     .card:active{ transform: translateY(1px) }
     .card:focus{ outline: 3px solid rgba(255,255,255,0.12); outline-offset: 4px; }
@@ -199,7 +200,11 @@
         <img class="card-img" src="https://images.unsplash.com/photo-1545996124-6b0b3e4b3e9f?auto=format&fit=crop&w=200&q=80" alt="Decorative thumbnail">
 -->
 
-        <span class="card-text">We are sorry for the inconvenience. Please try again later.</span>
+        <span class="card-text">
+          <div class="message">We are sorry for the inconvenience</div>
+          <div class="message">Please try again later</div>
+          <div class="message">::CLOUDFLARE_ERROR_500S_BOX::</div>
+        </span>
       </div>
     </section>
   </main>
