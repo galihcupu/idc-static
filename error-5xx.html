@@ -207,8 +207,8 @@
     }
 
     /* Optional: subtle hover focus styles for interactivity/accessibility */
-    .word-ok.word-nok:hover,
-    .word-ok.word-nok {
+    .word-ok, .word-nok:hover,
+    .word-ok, .word-nok {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.06);
       outline: none;
@@ -216,7 +216,7 @@
     }
 
     /* Make interactive via keyboard */
-    .word-ok.word-nok[tabindex] { cursor: pointer; }
+    .word-ok[tabindex], .word-nok[tabindex] { cursor: pointer; }
 
     .cf-error-details{
       display: none;
