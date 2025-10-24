@@ -180,6 +180,7 @@
 
     /* Each word gets a snug border */
     .word-ok {
+      width:30%;
       display: inline-block;     /* lets width hug content */
       border: 0px solid #333;    /* border color & thickness */
       padding: 6px 12px;         /* space inside border */
@@ -192,6 +193,7 @@
       transition: transform .12s ease, box-shadow .12s ease;
     }
     .word-nok {
+      width:30%;
       display: inline-block;     /* lets width hug content */
       border: 0px solid #333;    /* border color & thickness */
       padding: 6px 12px;         /* space inside border */
@@ -205,8 +207,8 @@
     }
 
     /* Optional: subtle hover focus styles for interactivity/accessibility */
-    .word:hover,
-    .word:focus {
+    .word-ok.word-nok:hover,
+    .word-ok.word-nok {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.06);
       outline: none;
@@ -214,9 +216,8 @@
     }
 
     /* Make interactive via keyboard */
-    .word[tabindex] { cursor: pointer; }
+    .word-ok.word-nok[tabindex] { cursor: pointer; }
 
-    
     .cf-error-details{
       display: none;
     }
