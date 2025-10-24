@@ -7,7 +7,7 @@
 
   <style>
     :root{
-      --bg-image: url("https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1950&q=80");
+      --bg-image: url("bg.png");
       --overlay-light: rgba(0,0,0,0.18);
       --overlay-dark: rgba(0,0,0,0.5);
       --card-red-light: rgba(220,40,40,0.25);
@@ -121,10 +121,16 @@
 </head>
 <body>
   <div class="hero" role="img" aria-label="Decorative background image">
+<!--
     <button class="theme-toggle" id="toggle" aria-pressed="false" title="Toggle theme">Toggle theme</button>
-    <div class="card" tabindex="0" aria-live="polite">Hehehe</div>
+-->
+    <div class="card" tabindex="0" aria-live="polite">You are not allowed to access this site!</div>
+    <div class="card" tabindex="0" aria-live="polite">Your IP: ::CLIENT_IP::</div>
+    <div class="card" tabindex="0" aria-live="polite">Your Location: ::GEO::</div>
+    <div class="card" tabindex="0" aria-live="polite">Ray ID::RAY_ID::</div>
   </div>
 
+<!--
   <script>
     // Small optional theme toggle: honors system preference initially.
     (function(){
@@ -152,5 +158,12 @@
       });
     })();
   </script>
+-->
+  
 </body>
 </html>
+<!--
+Notes (brief):
+    - Uses CSS clamp() for responsive sizing, backdrop-filter for a frosted effect, and prefers-color-scheme for dark mode.
+    - The theme toggle is optional; remove the button and script if you only want system-based dark mode.
+-->
