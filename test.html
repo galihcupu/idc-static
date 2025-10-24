@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>You Are Blocked!!</title>
+
+  <style>
+    :root{
+      --bg-image: url("https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1950&q=80");
+      --overlay-light: rgba(0,0,0,0.18);
+      --overlay-dark: rgba(0,0,0,0.5);
+      --card-red-light: rgba(220,40,40,0.25);
+      --card-red-dark: rgba(200,30,30,0.32);
+      --text-color: #ffffff;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+
+    /* Basic reset */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+
+    /* Fullscreen hero with background image */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      padding:2rem;
+      background-image: var(--bg-image);
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* soft overlay to ensure legible content */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: var(--overlay-light);
+      transition: background .25s ease;
+      z-index:0;
+      backdrop-filter: blur(0.5px);
+    }
+
+    /* Centered card */
+    .card{
+      position:relative;
+      z-index:2;
+      padding: clamp(0.8rem, 4vw, 2rem) clamp(1.2rem, 6vw, 3rem);
+      background: var(--card-red-light);
+      color: var(--text-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size: clamp(1.4rem, 6vw, 3rem); /* responsive text */
+      letter-spacing: 0.6px;
+      text-align:center;
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+      transition: background .2s ease, transform .15s ease;
+      user-select: none;
+    }
+
+    .card:active{ transform: translateY(1px) }
+
+    /* Accessibility: focus outline */
+    .card:focus{
+      outline: 3px solid rgba(255,255,255,0.12);
+      outline-offset: 4px;
+    }
+
+    /* small theme toggle in the corner (mobile friendly) */
+    .theme-toggle{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 3;
+      background: rgba(0,0,0,0.28);
+      color: #fff;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Dark mode adjustments via system preference */
+    @media (prefers-color-scheme: dark){
+      :root{
+        --overlay-light: var(--overlay-dark);
+        --card-red-light: var(--card-red-dark);
+      }
+      .theme-toggle{
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+      }
+    }
+
+    /* User-chosen theme via data-theme attribute (overrides system) */
+    :root[data-theme="dark"] .hero::before{ background: var(--overlay-dark) }
+    :root[data-theme="dark"] .card{ background: var(--card-red-dark) }
+    :root[data-theme="light"] .hero::before{ background: var(--overlay-light) }
+    :root[data-theme="light"] .card{ background: var(--card-red-light) }
+
+    /* Responsive tweaks */
+    @media (max-width:420px){
+      .theme-toggle{ top:10px; right:8px; padding:7px 9px; font-size:.85rem; }
+      .card{ padding: clamp(.7rem,5vw,1.3rem) clamp(.9rem,6vw,1.6rem); }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero" role="img" aria-label="Decorative background image">
+    <button class="theme-toggle" id="toggle" aria-pressed="false" title="Toggle theme">Toggle theme</button>
+    <div class="card" tabindex="0" aria-live="polite">Hehehe</div>
+  </div>
+
+  <script>
+    // Small optional theme toggle: honors system preference initially.
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('toggle');
+
+      // Initialize from localStorage or leave to system preference
+      const stored = localStorage.getItem('theme-preference');
+      if(stored) root.setAttribute('data-theme', stored);
+
+      function reflect(state){
+        btn.setAttribute('aria-pressed', state === 'dark');
+        btn.textContent = state === 'dark' ? 'Dark' : 'Light';
+      }
+
+      // set initial label
+      const current = root.getAttribute('data-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      reflect(current);
+
+      btn.addEventListener('click', () => {
+        const now = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+        root.setAttribute('data-theme', now);
+        localStorage.setItem('theme-preference', now);
+        reflect(now);
+      });
+    })();
+  </script>
+</body>
+</html>
