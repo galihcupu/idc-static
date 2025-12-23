@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy New Year</title>
+  <style>
+    :root{
+      --bg-image: url("HNY-2026.png");
+      --overlay-light: rgba(0,0,0,0.18);
+      --overlay-dark: rgba(0,0,0,0.5);
+      --card-red-light: rgba(220,40,40,0.25);
+      --card-red-dark: rgba(200,30,30,0.32);
+      --text-color: #ffffff;
+      --muted: rgba(255,255,255,0.75);
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.45);
+      --header-height: 64px;
+    }
+
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Helvetica Neue";}
+    body{display:flex;flex-direction:column;min-height:100vh;color:var(--text-color);background-color:#000;}
+    a{color:inherit;text-decoration:none}
+
+    /* Header */
+    header{
+      height:var(--header-height);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 1rem;
+      gap:1rem;
+      position:relative;
+      z-index:4;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0));
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+    .brand{display:flex;align-items:center;gap:0.75rem;font-weight:700;font-size:1rem}
+    .brand .logo{
+      width:36px;height:36px;border-radius:8px;overflow:hidden;flex-shrink:0;
+      background: linear-gradient(135deg,#ff7a7a,#b00);
+      display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+    nav{display:flex;gap:0.75rem;align-items:center}
+    nav a{padding:8px 10px;border-radius:8px;font-size:0.95rem;opacity:0.95}
+    .meta{display:flex;align-items:center;gap:0.5rem}
+
+    /* Theme toggle moved into header */
+    .theme-toggle{
+      background: rgba(0,0,0,0.28);
+      color: #fff;
+      border: none;
+      padding: 7px 10px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Main hero (flex:1 so footer gets bottom) */
+    main{flex:1;display:flex;align-items:center;justify-content:center;position:relative;padding:1.25rem}
+    .hero{
+      width:100%;
+      min-height: calc(100vh - var(--header-height) - 72px); /* leave space for header & footer */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      padding:2rem;
+      background-image: var(--bg-image);
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      border-radius:12px;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: var(--overlay-light);
+      transition: background .25s ease;
+      z-index:0;
+      backdrop-filter: blur(0.5px);
+    }
+
+    /* Centered card with image + text */
+    .card{
+      position:relative;
+      z-index:2;
+      padding: clamp(0.6rem, 3.5vw, 1.6rem) clamp(1rem, 5vw, 2rem);
+      background: var(--card-red-light);
+      color: var(--text-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:inline-flex;
+      gap: clamp(0.6rem, 3vw, 1.2rem);
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size: clamp(1.2rem, 5.5vw, 2.6rem);
+      letter-spacing: 0.4px;
+      text-align:center;
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+      transition: background .2s ease, transform .15s ease;
+      user-select: none;
+      max-width: 92vw;
+    }
+    .card-img{
+      width: clamp(44px, 9vw, 84px);
+      height: clamp(44px, 9vw, 84px);
+      border-radius: 12px;
+      object-fit: contain;
+      flex-shrink: 0;
+/*
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+*/
+    }
+    .card-text{display:inline-block;line-height:1;white-space:nowrap}
+
+    .card:active{ transform: translateY(1px) }
+    .card:focus{ outline: 3px solid rgba(255,255,255,0.12); outline-offset: 4px; }
+
+    /* Footer */
+    footer{
+      padding:0.8rem 1rem;
+      text-align:center;
+      font-size:0.9rem;
+      color:var(--muted);
+      background: linear-gradient(to top, rgba(0,0,0,0.06), rgba(0,0,0,0));
+    }
+
+    /* Dark mode adjustments via system preference */
+    @media (prefers-color-scheme: dark){
+      :root{
+        --overlay-light: var(--overlay-dark);
+        --card-red-light: var(--card-red-dark);
+      }
+      .theme-toggle{ background: rgba(255,255,255,0.06); color:#fff }
+    }
+
+    /* User-set theme overrides */
+    :root[data-theme="dark"] .hero::before{ background: var(--overlay-dark) }
+    :root[data-theme="dark"] .card{ background: var(--card-red-dark) }
+    :root[data-theme="light"] .hero::before{ background: var(--overlay-light) }
+    :root[data-theme="light"] .card{ background: var(--card-red-light) }
+
+    /* Small screens: stack card content and adjust nav */
+    @media (max-width:640px){
+      nav{display:none} /* keep header uncluttered; remove or adapt as needed */
+      .card{flex-direction:column;gap:.5rem;padding:clamp(.6rem,4vw,1.2rem)}
+      .card-text{font-size: clamp(1rem, 6.5vw, 1.6rem); white-space:normal}
+      header{padding:0 .75rem}
+    }
+
+    @media (max-width:420px){
+      .brand .logo{width:32px;height:32px}
+      .card-img{width:56px;height:56px}
+      :root{--header-height:56px}
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <div class="brand" aria-hidden="false">
+      <img class="card-img" src="idclear-transparent.png" alt="IDClear">
+<!--
+      <span class="logo" aria-hidden="true">H</span>
+-->
+      <span class="site-name">PT Kliring Penjaminan Efek Indonesia</span>
+    </div>
+
+<!--
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="#" aria-current="page">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <div class="meta">
+      <button class="theme-toggle" id="toggle" aria-pressed="false" title="Toggle theme">Toggle</button>
+    </div>
+-->
+    
+  </header>
+
+
+  <main role="main">
+    <section class="hero" role="img" aria-label="Decorative background image">
+<!--
+      <div class="card" tabindex="0" aria-live="polite">
+        <img class="card-img" src="https://images.unsplash.com/photo-1545996124-6b0b3e4b3e9f?auto=format&fit=crop&w=200&q=80" alt="Decorative thumbnail">
+        <span class="card-text">Sorry, you have been blocked</span>
+      </div>
+-->
+    </section>
+  </main>
+  
+<footer role="contentinfo">
+    Ray ID: ::RAY_ID:: • Your IP: ::CLIENT_IP::
+  </footer>
+
+<!--
+  <script>
+    // Theme toggle (keeps previous preference)
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('toggle');
+
+      const stored = localStorage.getItem('theme-preference');
+      if(stored) root.setAttribute('data-theme', stored);
+
+      function reflect(state){
+        btn.setAttribute('aria-pressed', state === 'dark');
+        btn.textContent = state === 'dark' ? 'Dark' : 'Light';
+      }
+
+      const initial = root.getAttribute('data-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      reflect(initial);
+
+      btn.addEventListener('click', () => {
+        const now = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+        root.setAttribute('data-theme', now);
+        localStorage.setItem('theme-preference', now);
+        reflect(now);
+      });
+    })();
+
+    // Small utility: set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+-->
+
+</body>
+</html>
