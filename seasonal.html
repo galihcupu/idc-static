@@ -6,7 +6,8 @@
   <title>Greetings</title>
   <style>
     :root{
-      --bg-image: url("XMAS-2025.svg");
+      --bg-image: url("seasonal.svg");
+      --bg-image-portrait: url("seasonal-portrait.svg");
       --overlay-light: rgba(0,0,0,0.18);
       --overlay-dark: rgba(0,0,0,0.5);
       --card-red-light: rgba(220,40,40,0.25);
@@ -72,12 +73,13 @@
       position:relative;
       padding:2rem;
       background-image: var(--bg-image);
-      background-size:100%;
-      background-position:top center;
+      background-size:cover;
+      background-position:center;
       background-repeat:no-repeat;
       border-radius:12px;
       overflow:hidden;
     }
+    
     .hero::before{
       content:"";
       position:absolute;
@@ -165,6 +167,14 @@
       .card-img{width:56px;height:56px}
       :root{--header-height:56px}
     }
+
+    @media (orientation: portrait) {
+      .hero {
+        background-image: var(--bg-image-portrait);
+        background-position: center bottom;
+      }
+    }
+    
   </style>
 </head>
 <body>
